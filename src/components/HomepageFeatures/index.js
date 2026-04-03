@@ -114,11 +114,11 @@ export default function HomepageFeatures() {
 </div>
 
 <div className={styles.ctaWrapper}>
-  <a href="/about" className={styles.primaryBtn}>
+  <a href="/bala-portfolio/about" className={styles.primaryBtn}>
     About Me →
   </a>
 
-    <a href="/case-study/case-study" className={styles.secondaryBtn}>
+    <a href="/bala-portfolio/case-study/case-study" className={styles.secondaryBtn}>
     Case Studies →
   </a>
 </div>

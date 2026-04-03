@@ -69,13 +69,13 @@ presets: [
       },
       items: [
 {
-  to: '/case-study/case-study',
+  to: '/case-study',
   label: 'Case Studies',
   position: 'left',
 },
 
       {
-        to: "/issues/issues",
+        to: "/issues",
         label: "Issues & Fixes",
         position: "left",
       },
@@ -95,7 +95,7 @@ presets: [
 
 {
   label: 'Architecture',
-  to: '/architecture/architecture',
+  to: '/architecture',
   position: 'left',
 },
 
