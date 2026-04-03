@@ -3,22 +3,22 @@ import styles from './styles.module.css';
 
 const logos = [
   {
-    src: '/img/clients/360alumni.png',
+    src: '/bala-portfolio/img/clients/360alumni.png',
     alt: '360alumni',
     link: '/case-studies/360alumni',
   },
   {
-    src: '/img/clients/fuzzygreentomato.png',
+    src: '/bala-portfolio/img/clients/fuzzygreentomato.png',
     alt: 'FuzzyGreenTomato',
     link: '/case-studies/fuzzygreentomato',
   },
   {
-    src: '/img/clients/solstice.png',
+    src: '/bala-portfolio/img/clients/solstice.png',
     alt: 'Solstice',
     link: '/case-studies/solstice',
   },
   {
-    src: '/img/clients/volumebilling.png',
+    src: '/bala-portfolio/img/clients/volumebilling.png',
     alt: 'Volumebilling',
     link: '/case-studies/volumebilling',
   },
