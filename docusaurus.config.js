@@ -4,9 +4,6 @@ const sidebarsArchitecture = require('./sidebarsArchitecture');
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
-
-
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'BalaSubramani K',
@@ -67,68 +64,64 @@ presets: [
         alt: 'Logo',
         src: 'img/header-icon.png',
       },
+
+
+      
       items: [
-{
-  to: '/case-study',
-  label: 'Case Studies',
-  position: 'left',
-},
-
-      {
-        to: "/issues",
-        label: "Issues & Fixes",
-        position: "left",
-      },
-
-    {
-      to: '/services',
-      label: 'Services',
-      position: 'left',
-    },
-
-
-{
-  to: '/expertise',
-  label: 'Expertise',
-  position: 'left',
-},
-
-{
-  label: 'Architecture',
-  to: '/architecture',
-  position: 'left',
-},
-
-{
-  to: '/contact',
-  label: 'Contact',
-  position: 'right',
-},
-
-{
-  to: '/blog',
-  label: 'Blog',
-  position: 'left',
-},
-
-{
-  to: '/labs',
-  label: 'Labs',
-  position: 'left',
-},
-
-    {
-      label: 'About',
-      to: '/about',   
-      position: 'left',
-    },
+          {
+            to: '/case-study',
+            label: 'Case Studies',
+            position: 'left',
+          },
         {
-          href: 'https://github.com/bakuppus',
-          label: 'GitHub',
+          to: '/services',
+          label: 'Services',
+          position: 'left',
+        },
+
+
+        {
+          to: '/expertise',
+          label: 'Expertise',
+          position: 'left',
+        },
+
+        {
+          label: 'Architecture',
+          to: '/architecture',
+          position: 'left',
+        },
+
+        {
+          to: '/contact',
+          label: 'Contact',
           position: 'right',
         },
-      ],
-    },
+
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left',
+        },
+
+        {
+          to: '/labs',
+          label: 'Labs',
+          position: 'left',
+        },
+
+        {
+          label: 'About',
+          to: '/about',   
+          position: 'left',
+        },
+            {
+              href: 'https://github.com/bakuppus',
+              label: 'GitHub',
+              position: 'right',
+            },
+          ],
+        },
 
     colorMode: {
       defaultMode: 'light',
@@ -148,27 +141,27 @@ footer: {
     {
       title: 'Services',
       items: [
-        { label: 'AWS Cloud Consulting', to: '/services/cloud/aws/aws-cloud-consulting' },
-        { label: 'Cloud Migration', to: '/services/cloud/aws/aws-cloud-migration' },
-        { label: 'Kubernetes Consulting', to: '/services/kubernetes/kubernetes-consulting' },
-        { label: 'DevOps & GitOps', to: '/services/devops/devops-consulting' },
+        { label: 'AWS Cloud Consulting', to: '/docs/services/cloud/aws/aws-cloud-consulting' },
+        { label: 'Cloud Migration', to: '/docs/services/cloud/aws/aws-cloud-migration' },
+        { label: 'Kubernetes Consulting', to: '/docs/services/kubernetes/kubernetes-consulting' },
+        { label: 'DevOps & GitOps', to: '/docs/services/devops/devops-consulting' },
       ],
     },
 
     {
       title: 'Solutions',
       items: [
-        { label: 'AI Infrastructure', to: '/services/ai/ai-infrastructure' },
-        { label: 'Observability', to: '/services/observability' },
-        { label: 'Service Mesh', to: '/services/service-mesh' },
-        { label: 'DevSecOps', to: '/services/devsecops' },
+        { label: 'AI Infrastructure', to: '/docs/services/ai/ai-infrastructure' },
+        { label: 'Observability', to: '/docs/services/observability' },
+        { label: 'Service Mesh', to: '/docs/services/service-mesh' },
+        { label: 'DevSecOps', to: '/docs/services/devsecops' },
       ],
     },
 
     {
       title: 'Resources',
       items: [
-        { label: 'Case Studies', to: '/case-studies' },
+        { label: 'Case Studies', to: '/case-study' },
         { label: 'Labs', to: '/labs' },
         { label: 'Blog', to: '/blog' },
       ],
@@ -177,8 +170,9 @@ footer: {
     {
       title: 'Company',
       items: [
-        { label: 'About Me', to: '/' },
+        { label: 'Home', to: '/' },
         { label: 'Contact', to: '/contact' },
+        {label: 'About Me', to: '/about' },
         {
           label: 'GitHub',
           href: 'https://github.com/bakuppus',
