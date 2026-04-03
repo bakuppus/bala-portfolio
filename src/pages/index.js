@@ -49,7 +49,7 @@ function HomepageHeader() {
        <div className={styles.ctaSection}>
          <Link
            className={clsx(styles.primaryButton)}
-           to="/Services">
+           to="/services">
            <span>Services</span>
            <svg className={styles.buttonIcon} width="20" height="20" viewBox="0 0 20 20" fill="none">
              <path d="M10.75 8.75L14.25 12.25L10.75 15.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

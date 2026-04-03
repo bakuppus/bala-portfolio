@@ -6,19 +6,19 @@ const caseStudies = [
   {
     title: '360alumni',
     description: 'Scaled SaaS platform to 20K+ users',
-    image: '/img/case-studies/360alumni/landingzone.png',
+    image: '/bala-portfolio/img/case-studies/360alumni/landingzone.png',
     link: '/docs/case-studies/360alumni',
   },
   {
     title: 'VolumeBilling',
     description: 'Application Migration and Modernization',
-    image: '/img/case-studies/volumebilling/architecture.png',
+    image: '/bala-portfolio/img/case-studies/volumebilling/architecture.png',
     link: '/docs/case-studies/volumebilling',
   },
   {
     title: 'FuzzyGreenTomato',
     description: 'Agriculture connected IoT on Kubernetes platform',
-    image: '/img/case-studies/fuzzygreentomato/architecture.png',
+    image: '/bala-portfolio/img/case-studies/fuzzygreentomato/architecture.png',
     link: '/docs/case-studies/fuzzygreentomato',
   },
 ];

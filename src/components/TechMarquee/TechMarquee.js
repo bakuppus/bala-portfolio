@@ -117,11 +117,11 @@ export default function TechMarquee() {
   </p>
 
   <div className={styles.ctaWrapper}>
-    <a href="/services" className={styles.primaryBtn}>
+    <a href="/bala-portfolio/services" className={styles.primaryBtn}>
       What I Do →
     </a>
 
-    <a href="/expertise" className={styles.secondaryBtn}>
+    <a href="/bala-portfolio/expertise" className={styles.secondaryBtn}>
       My Expertise →
     </a>
   </div>

@@ -118,7 +118,7 @@ export default function HomepageFeatures() {
     About Me →
   </a>
 
-    <a href="/bala-portfolio/case-study/case-study" className={styles.secondaryBtn}>
+    <a href="/bala-portfolio/case-study" className={styles.secondaryBtn}>
     Case Studies →
   </a>
 </div>

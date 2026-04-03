@@ -39,11 +39,11 @@ export default function LabsPage() {
   </p>
 
   <div className={styles.heroButtons}>
-    <a href="/contact" className={styles.primaryBtn}>
+    <a href="/bala-portfolio/contact" className={styles.primaryBtn}>
       Build With Me
     </a>
 
-    <a href="/architecture/architecture" className={styles.secondaryBtn}>
+    <a href="/bala-portfolio/architecture" className={styles.secondaryBtn}>
       View Architectures
     </a>
   </div>
