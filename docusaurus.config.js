@@ -18,8 +18,8 @@ const config = {
   onBrokenLinks: 'warn',
   favicon: 'img/header-icon.png',
 
-  organizationName: 'your-github-username',
-  projectName: 'your-repo-name',
+  organizationName: 'bakuppus',
+  projectName: 'bala-portfolio',
 
   future: {
     experimental_faster: true,
