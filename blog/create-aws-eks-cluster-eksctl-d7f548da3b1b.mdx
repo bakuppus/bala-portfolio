@@ -1,0 +1,215 @@
+---
+title: "Create AWS EKS Cluster — eksctl"
+slug: create-aws-eks-cluster-eksctl-d7f548da3b1b
+date: 2025-01-10T12:18:39.000Z
+image: "https://cdn-images-1.medium.com/max/1024/0*8v3wYbI7g6dzqN5i.png"
+tags: ["AWS","Kubernetes"]
+---
+
+![banner](https://cdn-images-1.medium.com/max/1024/0*8v3wYbI7g6dzqN5i.png)
+
+### Create AWS EKS Cluster — eksctl
+
+
+
+Creating Kubenetes cluster in AWS have multiple options like using AWS SDK, Terraform, Cloudformation and easy and quick for new learner using AWS Console. In this blog we going see another well know method of creating AWS EKS cluster using “eksctl” command by using as YAML configuration in default VPC. ( Same can be create by CLI command).
+
+### Let’s get start
+
+### Prerequisites:
+
+Let install these binary one by one
+
+1.  AWS CLI
+2.  eksctl CLI
+3.  kubectl
+
+### Step 1. Install AWS CLI (Mac OS)
+
+### Download AWS CLI binary
+
+```
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*6J25ADnX888KRIdU)
+
+### Install AWS CLI
+
+```
+sudo installer -pkg ./AWSCLIV2.pkg -target /
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*J6P6L-2OHpXfbtX5)
+
+### Verify the installation
+
+```
+which aws  
+aws --version
+```
+
+![image](https://cdn-images-1.medium.com/max/650/0*yE2erRuy89kWl4rF)
+
+### Step 2. Configure AWS CLI
+
+#### Step 2.1. Login to AWS console as root user
+
+#### Step 2.2. Create IAM user
+
+> username: kubedeveloper
+
+> No AWS console access, Only programmatic access
+
+![image](https://cdn-images-1.medium.com/max/700/0*RHLvaEl4LgGfRTis)
+
+Provide Username
+
+![image](https://cdn-images-1.medium.com/max/700/0*y0XglW3siyhLWF-h)
+
+Permission as per User Type
+
+![image](https://cdn-images-1.medium.com/max/700/0*fz-rr7HCh2Qe0_PT)
+
+### Create Access and SecretAccessKey
+
+#### Step 2.3 Select the IAM user “kubedeveloper”
+
+#### Step 2.4 Navigate to Security Credentials
+
+![image](https://cdn-images-1.medium.com/max/700/0*W0FOS6LDMTBZfh_J)
+
+#### Step 2.5. Click Create access key
+
+![image](https://cdn-images-1.medium.com/max/700/0*AZaS-aLEyZHx4rAT)
+
+#### Step 2.6 Select Use case :
+
+> **Command Line Interface (CLI) & check the Confirmation**
+
+![image](https://cdn-images-1.medium.com/max/700/0*EsY2bE1Sk8lQZ-nq)
+
+#### Step 2.7. Set description tag — optional and Click create
+
+![image](https://cdn-images-1.medium.com/max/700/0*2DVs1_r_ae4rSSoF)
+
+> Now we got AccessKey and SecretAccessKey,
+
+#### Next, Let configure AWS CLI on Mac OS command line
+
+_Note: if multiple aws account configured, use — profile_
+
+```
+$ aws configure
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*UM7Vb_AAe_qqXXJ_)
+
+### Validate AWS CLI Access
+
+**Run any aws command to list resources**
+
+_Here eg: To list s3 buckets on my AWS account_
+
+```
+bala@kubelancer Downloads % aws s3 ls
+```
+
+### Getting output, which denoted AWS access has been configured correctly
+
+```
+bala@kubelancer Downloads % aws s3 ls  
+2022-12-13 21:36:02 firehose-backup-05bf6840
+```
+
+### Install eksctl on Mac OS
+
+### To download the latest release, run on Mac OS (arm64 architecture):
+
+```
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl\_Darwin\_arm64.tar.gz"  
+tar -xzvf eksctl\_Darwin\_arm64.tar.gz  
+sudo mv ./eksctl /usr/local/bin
+```
+
+_Ref:_ [_https://www.weave.works/oss/eksctl/_](https://www.weave.works/oss/eksctl/?ref=blog.kubelancer.com)
+
+### Step 3: Creating an AWS EKS Kubernetes Cluster using eksctl tool
+
+#### 3.1. Create Cluster configuration yaml file
+
+```
+$ vi cluster-config.yaml
+```
+```
+apiVersion: eksctl.io/v1alpha5  
+kind: ClusterConfig  
+  
+metadata:  
+  name: kubelancer-cluster-1  
+  region: us-east-1  
+  
+nodeGroups:  
+  - name: ng-1  
+    instanceType: t4g.medium  
+    desiredCapacity: 2  
+    volumeSize: 20  
+    ssh:  
+      allow: false
+```
+
+#### 3.2 Let’s create eks cluster on aws using eksctl command
+
+```
+$ eksctl create cluster -f cluster-config.yaml
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*bCHBjtkzz-9y-9zL.png)
+
+Cluster created successfully
+
+_Note: if multiple aws account configured, use — profile_
+
+### Get the cluster name by using eksctl command
+
+_eksctl interact with AWS API and get the required details from AWS cloud_
+
+```
+$ eksctl get cluster --profile kubedev
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*LdkIlcyQdjaZUq2B.png)
+
+### Use the following command to get update kube-config.
+
+```
+$ aws eks update-kubeconfig --name=kubelancer-cluster-1 --region=us-east-1
+```
+
+### Verify the Cluster
+
+```
+kubectl get nodes
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*J5sncgvhxcyeRa4Q.png)
+
+Cluster Node Status
+
+### Delete Cluster
+
+```
+$ kubectl get poddisruptionbudget -A  
+$ kubectl delete poddisruptionbudget coredns -n kube-system  
+$ eksctl delete cluster -f cluster-config.yaml --profile kubedev
+```
+
+![image](https://cdn-images-1.medium.com/max/700/0*az4ZrnhDpIqJNMBZ.png)
+
+### Happy Computing :)
+
+![image](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=d7f548da3b1b)
+
+---
+
+👉 Originally published on Medium: [Read more](https://bala-kubelancer.medium.com/create-aws-eks-cluster-eksctl-d7f548da3b1b?source=rss-2ce6e2575b1e------2)

@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "eks-microservice",
+    "title": "Running Microservice in EKS",
+    "description": "Deploy and scale microservices in Kubernetes using AWS EKS",
+    "tags": ["Kubernetes", "EKS"]
+  },
+  {
+    "slug": "istio-ambient",
+    "title": "Istio Ambient Mode Demo",
+    "description": "Service mesh without sidecars using Istio Ambient mode",
+    "tags": ["Service Mesh", "Istio"]
+  }
+]

@@ -1,0 +1,234 @@
+.grid {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: block;
+  padding: 22px;
+  border-radius: 16px;
+
+  text-decoration: none;
+
+  /* 🌈 Gradient background */
+   background: linear-gradient(135deg, #ffffff, #ffffff);
+
+  border: 1px solid #eae5eb;
+  transition: all 0.3s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+
+  background: linear-gradient(
+    120deg,
+    #3b82f6,
+    #10b981,
+    #f59e0b,
+    #ef4444
+  );
+
+  opacity: 0;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card p {
+  color: #000000;
+  font-size: 18px;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000512;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.card:hover .link {
+  transform: translateX(4px);
+}
+
+.card:nth-child(1) { border-left: 4px solid #10b981; }
+.card:nth-child(2) { border-left: 4px solid #3b82f6; }
+.card:nth-child(3) { border-left: 4px solid #f59e0b; }
+.card:nth-child(4) { border-left: 4px solid #14b8a6; }
+.card:nth-child(5) { border-left: 4px solid #f719d6; }
+.card:nth-child(6) { border-left: 4px solid #8b5cf6; }x
+.card:nth-child(7) { border-left: 4px solid #ec4899; }
+.card:nth-child(8) { border-left: 4px solid #f9df4c; }  
+.card:nth-child(9) { border-left: 4px solid #3b82f6; }
+.card:nth-child(10) { border-left: 4px solid #10b981; }
+.card:nth-child(11) { border-left: 4px solid #f59e0b; }
+.card:nth-child(12) { border-left: 4px solid #14b8a6; }
+.card:nth-child(13) { border-left: 4px solid #ef4488; } 
+
+
+/* 🔥 HERO SECTION */
+
+/* HERO */
+
+.gradientText {
+  background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px 80px;
+  overflow: hidden;
+  background: #f9fafb;
+}
+
+
+
+.heroTitle {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.heroSubtitle {
+  font-size: 28px;
+  color: #121213;
+  max-width: 1500px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.secondaryBtn {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+.glow1,
+.glow2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.glow1 {
+  background: #2563eb;
+  top: -50px;
+  left: -50px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow2 {
+  background: #06b6d4;
+  bottom: -50px;
+  right: -50px;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}

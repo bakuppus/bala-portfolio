@@ -1,0 +1,51 @@
+---
+title: "Which load balancer is best for microservices on AWS EKS?"
+slug: which-load-balancer-is-best-for-microservices-on-aws-eks-2c9f64b853eb
+date: 2025-12-05T05:56:10.000Z
+image: "https://cdn-images-1.medium.com/max/1024/1*JLJollfy1IgkT9YqvRSS5Q.png"
+tags: ["AWS","Kubernetes"]
+---
+
+![banner](https://cdn-images-1.medium.com/max/1024/1*JLJollfy1IgkT9YqvRSS5Q.png)
+
+
+
+#### Short answer up front:
+
+\* **Use ALB** (AWS Application Load Balancer) at the edge for almost all HTTP/HTTPS microservices workloads. _It gives host/path routing, TLS offload, WebACL/WAF, and better request-level features that microservices typically need._
+
+\* **Use NLB** only when you need true L4 passthrough, extremely low latency very high connection scale, UDP/TCP workloads, or when preserving source IP is critical and simpler setup is preferred.
+
+\* **Hybrid (ALB at edge + internal NLB)** is a great compromise when you need ALB features at the edge but want NLB performance for specific internal high-throughput services.
+
+#### Why microservices usually favour ALB ?
+
+Microservices architectures typically expose many small HTTP/HTTPS services, use host- and path-based routing (e.g., [api.example.com/users](http://api.example.com/users), [api.example.com/payments](http://api.example.com/payments)), use TLS, and often require features like:
+
+— per-host routing (virtual hosts)  
+ — path-based routing and rewriting  
+ — TLS termination with ACM and easy certificate management  
+ — Web Application Firewall (WAF) protections at the edge  
+ — HTTP features: websockets, HTTP/2, header manipulation, redirect rules  
+easy integration with Gateway API for Kubernetes-native routing  
+_ALB provides all of these natively._
+
+#### When to pick NLB instead?
+
+Pick NLB when one of the following is true:
+
+— Your services are TCP/UDP (non-HTTP) or need pure L4 passthrough. Examples: raw TCP proxies, some legacy protocols, high-volume TCP streaming.
+
+— You need lowest possible latency and the highest concurrent connection scale (NLB is optimized for L4).
+
+— You want simple Service annotation deployment without installing AWS Load Balancer Controller (fast setup).
+
+— You want to preserve source client IP easily and reliably for backend services.
+
+NLB is simpler for L4 and usually cheaper for pure throughput scenarios, but it lacks L7 routing and WAF.
+
+![image](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=2c9f64b853eb)
+
+---
+
+👉 Originally published on Medium: [Read more](https://bala-kubelancer.medium.com/which-load-balancer-is-best-for-microservices-on-aws-eks-2c9f64b853eb?source=rss-2ce6e2575b1e------2)

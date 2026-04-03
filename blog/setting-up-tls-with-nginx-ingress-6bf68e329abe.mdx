@@ -1,0 +1,430 @@
+---
+title: "Setting up TLS with Nginx Ingress"
+slug: setting-up-tls-with-nginx-ingress-6bf68e329abe
+date: 2025-01-10T12:10:57.000Z
+image: "https://cdn-images-1.medium.com/max/1024/0*6kJBVzwOvJqPKIMq.jpg"
+tags: []
+---
+
+![banner](https://cdn-images-1.medium.com/max/1024/0*6kJBVzwOvJqPKIMq.jpg)
+
+This guide provides a step-by-step tutorial on setting up TLS with Nginx Ingress on AWS EKS clusters using Let’s-Encrypt
+
+
+
+> Expose a Kubernetes service with TLS using NGINX Ingress on AWS EKS
+
+### Step 1: Create an AWS EKS Cluster
+
+#### AWS EKS Kubernetes Cluster using “eksctl” Command
+
+**1: Install AWS CLI (Mac OS)**
+
+Download the AWS CLI binary
+
+```
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*-uOW5dbmacOjPo2g.png)
+
+**2: Install**
+
+```
+sudo installer -pkg ./AWSCLIV2.pkg -target /
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*NW75_hUcd60eyH3m.png)
+
+**3: Verify the installation**
+
+```
+which aws  
+  
+aws --version
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*Y7_4HvHCHsLx9dq7.png)
+
+**4: Configure AWS CLI**
+
+Login to AWS console as root / Admin privileged IAM user
+
+Create IAM user
+
+> username: kubedeveloper
+
+_No AWS console access, only programmatic access_
+
+![image](https://cdn-images-1.medium.com/max/1024/0*nYJgEgEPj6i1DEE8)
+
+Username
+
+![image](https://cdn-images-1.medium.com/max/1024/0*SBWll94ycNQhprzo)
+
+User permission
+
+![image](https://cdn-images-1.medium.com/max/1024/0*Ua4SvgzVeqSqV_oa)
+
+Create user
+
+**5: Create Access and Secret Access Key**
+
+> Select the IAM user kubedeveloper
+
+Navigate to Security Credentials
+
+![image](https://cdn-images-1.medium.com/max/1024/0*zOto_jr2DEBgn9CC)
+
+Create Security Credentials
+
+Click Create Access Key
+
+![image](https://cdn-images-1.medium.com/max/1024/0*h2a4aAInVUbvX4QP)
+
+Access Key
+
+Select Use case: Command Line Interface (CLI) & check the Confirmation
+
+![image](https://cdn-images-1.medium.com/max/1024/0*TzaVjLn0ORhPViI8)
+
+Use Case for Security Credentials
+
+Set description tag _— optional_ and Click Create
+
+![image](https://cdn-images-1.medium.com/max/1024/0*eIih2cWjNPHnDpRR)
+
+Download Credentials
+
+**6: Configure AWS CLI on Mac OS command line**
+
+```
+aws configure
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*iqMQk3TZIIzHOwYN.png)
+
+**7: Install eksctl on Mac OS**
+
+To download the latest release, run on Mac OS (arm64 architecture):
+
+```
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl\_Darwin\_arm64.tar.gz"  
+  
+tar -xzvf eksctl\_Darwin\_arm64.tar.gz  
+  
+sudo mv ./eksctl /usr/local/bin
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*TmucQJSTmo60PtPM.png)
+
+Ref: [https://www.weave.works/oss/eksctl/](https://www.weave.works/oss/eksctl/?ref=blog.kubelancer.com)
+
+**8: Creating an AWS EKS Kubernetes Cluster using eksctl**
+
+Create Cluster configuration YAML file
+
+```
+vi cluster-config.yaml
+```
+```
+apiVersion: eksctl.io/v1alpha5  
+kind: ClusterConfig  
+  
+metadata:  
+  name: kubelancer-cluster-2  
+  region: us-east-1  
+  
+nodeGroups:  
+  - name: ng-1  
+    instanceType: t4g.small  
+    desiredCapacity: 2  
+    volumeSize: 10  
+    ssh:  
+      allow: false
+```
+
+**Let’s create an EKS Cluster on AWS using eksctl command**
+
+```
+eksctl create cluster -f cluster-config.yaml
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*mS8EqU4eAODz6FE7.png)
+
+Use the following command to get kube-config context
+
+```
+aws eks update-kubeconfig --name=kubelancer-cluster-2 --region=us-east-1
+```
+```
+kubectl get node
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*wZi3mNl5uKaQTsKY.png)
+
+### Step 2: Deploy the NGINX Ingress Controller
+
+1.  **Create Name space and deploy**
+
+```
+kubectl create namespace ingress-nginx
+```
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*UZWoNrOHQQeZX0tO)
+
+Pre-flight check
+
+```
+kubectl get pods -n ingress-nginx
+```
+
+Output
+
+![image](https://cdn-images-1.medium.com/max/1024/0*xAbk68OS8iUUv17U)
+
+List Service
+
+```
+kubectl get svc --namespace=ingress-nginx
+```
+
+**Output**
+
+![image](https://cdn-images-1.medium.com/max/1024/0*P_-RpIxpmpf_11nL)
+
+### Step 3: Deploy a sample application
+
+1.  **Deploy sample app on dev namespace**
+
+```
+kubectl create ns dev
+```
+```
+vi kubewebserver.yaml  
+```
+```
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: kubewebserver  
+  namespace: dev  
+  labels:  
+    app: kubewebserver  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: kubewebserver  
+  template:  
+    metadata:  
+      labels:  
+        app: kubewebserver  
+    spec:  
+      containers:  
+      - name: kubewebserver  
+        image: kubelancer/hello-kubelancer:v1  
+        ports:  
+        - containerPort: 80  
+\---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: kubewebserver-service  
+  namespace: dev  
+  labels:  
+    app: kubewebserver-service  
+spec:  
+  type: ClusterIP  
+  ports:  
+  - port: 80  
+    targetPort: 80  
+    protocol: TCP  
+  selector:  
+    app: kubewebserver
+```
+```
+kubectl apply -f kubewebserver.yaml
+```
+
+**Output**
+
+```
+kubectl get deploy,svc -n dev
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*GvaKKz-fSlwg4eHi)
+
+### Step 4: Create ingress without TLS
+
+```
+vi ingress-with-host.yaml
+```
+```
+apiVersion: networking.k8s.io/v1  
+kind: Ingress  
+metadata:  
+  name: ingress-with-host-02  
+  namespace: dev  
+  annotations:  
+    nginx.ingress.kubernetes.io/rewrite-target: /  
+spec:  
+  ingressClassName: nginx  
+  rules:  
+  - host: webtest.kubelancer.in  
+    http:  
+      paths:  
+      - path: /  
+        pathType: Prefix  
+        backend:  
+          service:  
+            name: kubewebserver-service  
+            port:  
+              number: 80
+```
+```
+kubectl apply -f ingress-with-host.yaml
+```
+
+**Output**
+
+```
+kubectl get ingress -n dev
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*4dQ65fMQ1-9pA7zO)
+
+Note: Create CNAME record on your DNS for name resolution
+
+### Output
+
+curl [http://webtest.kubelancer.in](http://webtest.kubelancer.in/?ref=blog.kubelancer.com)
+
+```
+curl http://webtest.kubelancer.in  
+Hello Kubelancer
+```
+
+> Let we perform below steps to access same website using https://
+
+### To config SSL, we are going to use Cert-Manager and Let’s Encrypt in this Lab
+
+_In simple:_
+
+### Cert Manager
+
+cert-manager creates TLS certificates for workloads in your Kubernetes, also helps to renew the certificate.
+
+cert-manager obtain certificates from a Let’s Encrypt.
+
+### Let’s Encrypt
+
+To enable HTTPS for website, we need to purchase SSL certificate from Certificate Authority, which is costable. For demo or development environment, we have a choice to use free Certificate Authority (CA), that guy is Let’s Encrypt.
+
+### Step 5: Deploy cert-manager
+
+```
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.yaml
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*_iO-ahE8W_vo9FwZ)
+
+Output
+
+```
+kubectl get pods --namespace cert-manager
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*tioJG98abrmVktZj)
+
+### Step 6: Configure a Let’s Encrypt Issuer
+
+```
+apiVersion: cert-manager.io/v1  
+kind: Issuer  
+metadata:  
+  name: letsencrypt-prod  
+  namespace: dev  
+spec:  
+  acme:  
+    server: https://acme-v02.api.letsencrypt.org/directory  
+    email: noreply@gmail.com   
+    privateKeySecretRef:  
+      name: letsencrypt-prod  
+    solvers:  
+      - http01:  
+          ingress:  
+            ingressClassName: nginx
+```
+```
+kubectl create -f issuer.yaml
+```
+```
+kubectl get issuer -n dev
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*joJyJnycikLrCPhN)
+
+> Note: Ensure the issuer is in Ready State
+
+### Step 7: Add TLS snippet on YAML and deploy Ingress Resource
+
+```
+vi ingress-with-host.yaml
+```
+```
+apiVersion: networking.k8s.io/v1  
+kind: Ingress  
+metadata:  
+  name: ingress-with-host-02  
+  namespace: dev  
+  annotations:  
+    nginx.ingress.kubernetes.io/rewrite-target: /  
+    cert-manager.io/issuer: "letsencrypt-prod"  
+spec:  
+  ingressClassName: nginx  
+  tls:  
+  - hosts:  
+    - webtest.kubelancer.in  
+    secretName: kubewebserver-tls  
+  rules:  
+  - host: webtest.kubelancer.in  
+    http:  
+      paths:  
+      - path: /  
+        pathType: Prefix  
+        backend:  
+          service:  
+            name: kubewebserver-service  
+            port:  
+              number: 80
+```
+```
+kubectl apply -f ingress-with-host.yaml
+```
+```
+kubectl get secret -n dev
+```
+
+![image](https://cdn-images-1.medium.com/max/1024/0*hDcZwfUoNwoRwU7o)
+
+### Step 8: Output
+
+> Open in browser
+
+![image](https://cdn-images-1.medium.com/max/1012/0*pCujpAIW_k7t5Hej.png)
+
+Now the website has secure connection
+
+#### Now the website has a secure encrypted connection using SSL
+
+### Happy Computing :)
+
+![image](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=6bf68e329abe)
+
+---
+
+👉 Originally published on Medium: [Read more](https://bala-kubelancer.medium.com/setting-up-tls-with-nginx-ingress-6bf68e329abe?source=rss-2ce6e2575b1e------2)

@@ -1,0 +1,259 @@
+---
+title: "Path Based - Simple Fanout Ingress on Kubernetes"
+slug: path-based-simple-fanout-ingress-on-kubernetes-055e87a43b45
+date: 2025-01-10T12:21:31.000Z
+image: "https://cdn-images-1.medium.com/max/1024/0*PS5MQde3-QEiZJhK.jpg"
+tags: ["Kubernetes"]
+---
+
+![banner](https://cdn-images-1.medium.com/max/1024/0*PS5MQde3-QEiZJhK.jpg)
+
+
+
+### Simple fanout / Path Based Ingress - Demo
+
+Expose multiple services by using single IP address.
+
+![image](https://cdn-images-1.medium.com/max/1024/0*KvV_R2OD4Glgj3yq.png)
+
+#### Create three deployment and services.
+
+```
+vi simplesite-deployment-services.yaml
+```
+```
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: home-deployment  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: home  
+  template:  
+    metadata:  
+      labels:  
+        app: home  
+    spec:  
+      containers:  
+        - name: home-container  
+          image: kubelancer/simplehome:v1.0.0  
+          ports:  
+            - containerPort: 8080  
+          env:                    
+            - name: HOME\_SERVICE\_URL  
+              value: "http://home-service:8080"  
+            - name: BLOG\_SERVICE\_URL  
+              value: "http://blog-service:8081"  
+            - name: SERVICES\_SERVICE\_URL  
+              value: "http://services-service:8082"  
+\---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: home-service  
+spec:  
+  selector:  
+    app: home  
+  ports:  
+    - protocol: TCP  
+      port: 8080  
+      targetPort: 8080  
+  type: ClusterIP  
+\---  
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: blog-deployment  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: blog  
+  template:  
+    metadata:  
+      labels:  
+        app: blog  
+    spec:  
+      containers:  
+        - name: blog-container  
+          image: kubelancer/simpleblog:v1.0.0  
+          ports:  
+            - containerPort: 8081  
+          env:  
+            - name: HOME\_SERVICE\_URL  
+              value: "http://home-service:8080"  
+            - name: BLOG\_SERVICE\_URL  
+              value: "http://blog-service:8081"  
+            - name: SERVICES\_SERVICE\_URL  
+              value: "http://services-service:8082"  
+\---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: blog-service  
+spec:  
+  selector:  
+    app: blog  
+  ports:  
+    - protocol: TCP  
+      port: 8081  
+      targetPort: 8081  
+  type: ClusterIP  
+\---  
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: services-deployment  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: services  
+  template:  
+    metadata:  
+      labels:  
+        app: services  
+    spec:  
+      containers:  
+        - name: services-container  
+          image: kubelancer/simpleservices:v1.0.0  
+          ports:  
+            - containerPort: 8082  
+          env:  
+            - name: HOME\_SERVICE\_URL  
+              value: "http://home-service:8080"  
+            - name: BLOG\_SERVICE\_URL  
+              value: "http://blog-service:8081"  
+            - name: SERVICES\_SERVICE\_URL  
+              value: "http://services-service:8082"  
+\---  
+apiVersion: v1  
+kind: Service  
+metadata:  
+  name: services-service  
+spec:  
+  selector:  
+    app: services  
+  ports:  
+    - protocol: TCP  
+      port: 8082  
+      targetPort: 8082  
+  type: ClusterIP
+```
+
+*   Apply the deployment and services
+
+```
+kubectl apply -f simplesite-deployment-services.yaml
+```
+
+*   List deployment,pods,svc
+
+```
+kubectl get deployment,pod,svc -o wide
+```
+
+### Output
+
+![image](https://cdn-images-1.medium.com/max/1024/0*yPoTFoBcAttcNpHJ.png)
+
+### Create ingress (path-based)
+
+```
+vi ingress-pathbased.yaml
+```
+```
+\---  
+apiVersion: networking.k8s.io/v1  
+kind: Ingress  
+metadata:  
+  name: ingress-pathbased  
+  namespace: default  
+spec:  
+  ingressClassName: nginx  
+  rules:  
+  - host: tify.kubelancer.com  
+    http:  
+      paths:  
+      - path: /  
+        pathType: Prefix  
+        backend:  
+          service:  
+            name: home-service  
+            port:  
+              number: 8080  
+      - path: /blog  
+        pathType: Prefix  
+        backend:  
+          service:  
+            name: blog-service  
+            port:  
+              number: 8081  
+      - path: /services  
+        pathType: Prefix  
+        backend:  
+          service:  
+            name: services-service  
+            port:  
+              number: 8082
+```
+
+*   Apply the ingress
+
+```
+kubectl apply -f ingress-pathbased.yaml
+```
+
+*   Get ingress
+
+```
+kubectl get ingress
+```
+
+### Output
+
+![image](https://cdn-images-1.medium.com/max/1024/0*PRVRH9bd79af6iBQ.png)
+
+### Validate
+
+**Home Page**
+
+```
+curl -i  --resolve tify.kubelancer.com:80:192.168.10.0 tify.kubelancer.com
+```
+
+**Blog Page**
+
+```
+curl -i  --resolve tify.kubelancer.com:80:192.168.10.0 tify.kubelancer.com/blog
+```
+
+**Services Page**
+
+```
+curl -i  --resolve tify.kubelancer.com:80:192.168.10.0 tify.kubelancer.com/services
+```
+
+### Output
+
+![image](https://cdn-images-1.medium.com/max/1024/0*YlaQIXatCVO1wFl6.png)
+
+Home
+
+![image](https://cdn-images-1.medium.com/max/1024/0*1LBy3kHoMo37NSDp.png)
+
+Blog
+
+![image](https://cdn-images-1.medium.com/max/1024/0*sx01eIoGqGGWin5z.png)
+
+Service
+
+### Happy Computing :)
+
+![image](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=055e87a43b45)
+
+---
+
+👉 Originally published on Medium: [Read more](https://bala-kubelancer.medium.com/path-based-simple-fanout-ingress-on-kubernetes-055e87a43b45?source=rss-2ce6e2575b1e------2)

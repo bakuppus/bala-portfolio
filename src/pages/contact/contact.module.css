@@ -1,0 +1,153 @@
+.contactGrid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+
+/* HERO */
+
+.gradientText {
+  background: linear-gradient(90deg, #2563eb, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px 80px;
+  overflow: hidden;
+  background: #f9fafb;
+}
+
+
+
+.heroTitle {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.heroSubtitle {
+  font-size: 28px;
+  color: #121213;
+  max-width: 1500px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.secondaryBtn {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+.glow1,
+.glow2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.glow1 {
+  background: #2563eb;
+  top: -50px;
+  left: -50px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow2 {
+  background: #06b6d4;
+  bottom: -50px;
+  right: -50px;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
