@@ -152,9 +152,9 @@ footer: {
       title: 'Solutions',
       items: [
         { label: 'AI Infrastructure', to: '/docs/services/ai/ai-infrastructure' },
-        { label: 'Observability', to: '/docs/services/observability' },
-        { label: 'Service Mesh', to: '/docs/services/service-mesh' },
-        { label: 'DevSecOps', to: '/docs/services/devsecops' },
+        { label: 'Observability', to: '/docs/services/observability-consulting' },
+        { label: 'Service Mesh', to: '/docs/services/service-mesh-consulting' },
+        { label: 'DevSecOps', to: '/docs/services/devsecops-consulting' },
       ],
     },
 
