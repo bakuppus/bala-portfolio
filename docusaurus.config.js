@@ -11,7 +11,7 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const config = {
   title: 'BalaSubramani K',
   tagline: 'Trusted Cloud, Kubernetes & AI Infrastructure Partner',
-  url: 'https://github.com/bakuppus/',
+  url: 'https://bakuppus.github.io',
   baseUrl: '/bala-portfolio/',
 
   trailingSlash: false,
