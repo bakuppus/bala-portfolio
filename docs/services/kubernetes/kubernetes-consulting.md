@@ -7,9 +7,7 @@ title: Kubernetes Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-Kubernetes Consulting for Production-Grade Platforms
-</h1>
+<h1 className="heroTitle"> Kubernetes Consulting for Production-Grade Platforms </h1>
 
 <p className="heroSubtitle">
 I design, build, and scale Kubernetes platforms that are secure, highly available, and ready for real production workloads.

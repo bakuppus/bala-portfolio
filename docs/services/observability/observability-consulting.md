@@ -7,9 +7,7 @@ title: Observability & Monitoring Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-Observability & Monitoring for Reliable, High-Performance Systems
-</h1>
+<h1 className="heroTitle"> Observability & Monitoring for Reliable, High-Performance Systems </h1>
 
 <p className="heroSubtitle">
 I design and implement observability platforms that give full visibility into your systems — metrics, logs, and traces — to ensure reliability and fast issue resolution.

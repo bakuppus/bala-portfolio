@@ -7,9 +7,7 @@ title: Service Mesh Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-Service Mesh Consulting for Secure, Scalable Microservices
-</h1>
+<h1 className="heroTitle"> Service Mesh Consulting for Secure, Scalable Microservices </h1>
 
 <p className="heroSubtitle">
 I design and implement service mesh architectures that provide traffic control, security, observability, and reliability for modern microservices platforms.

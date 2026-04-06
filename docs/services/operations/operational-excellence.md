@@ -7,9 +7,7 @@ title: Operational Excellence
 
 <div className="section">
 
-<h1 className="heroTitle">
-Operational Excellence for Scalable, Reliable, and Efficient Systems
-</h1>
+<h1 className="heroTitle"> Operational Excellence for Scalable, Reliable, and Efficient Systems </h1>
 
 <p className="heroSubtitle">
 I help organizations improve their cloud operations, DevOps processes, and system reliability to achieve high performance, efficiency, and business continuity.

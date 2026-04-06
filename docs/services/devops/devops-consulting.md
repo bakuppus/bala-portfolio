@@ -7,9 +7,7 @@ title: DevOps Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-DevOps Consulting for Scalable, Automated, and Reliable Systems
-</h1>
+<h1 className="heroTitle"> DevOps Consulting for Scalable, Automated, and Reliable Systems </h1>
 
 <p className="heroSubtitle">
 I help companies build modern DevOps platforms with CI/CD, Kubernetes, GitOps, and automation to deliver faster, more reliable software.

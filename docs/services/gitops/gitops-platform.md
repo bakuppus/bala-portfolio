@@ -7,9 +7,7 @@ title: GitOps Platform Engineering
 
 <div className="section">
 
-<h1 className="heroTitle">
-GitOps Platform Engineering for Automated, Scalable Deployments
-</h1>
+<h1 className="heroTitle"> GitOps Platform Engineering for Automated, Scalable Deployments </h1>
 
 <p className="heroSubtitle">
 I design and implement GitOps-driven platforms that enable automated, reliable, and consistent deployments across environments.

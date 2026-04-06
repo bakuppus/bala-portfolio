@@ -7,9 +7,7 @@ title: AWS Cloud Cost Control
 
 <div className="section">
 
-<h1 className="heroTitle">
-Reduce Your AWS Bill Without Breaking Your System
-</h1>
+<h1 className="heroTitle"> Reduce Your AWS Bill Without Breaking Your System </h1>
 
 <p className="heroSubtitle">
 I help companies cut AWS costs by 30–60% while improving performance, scalability, and reliability.

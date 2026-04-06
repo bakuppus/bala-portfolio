@@ -7,9 +7,7 @@ title: AWS Cloud Migration
 
 <div className="section">
 
-<h1 className="heroTitle">
-Move to AWS Without Downtime or Risk
-</h1>
+<h1 className="heroTitle"> Move to AWS Without Downtime or Risk </h1>
 
 <p className="heroSubtitle">
 I help businesses migrate applications, databases, and infrastructure to AWS with zero downtime, improved performance, and production-ready architecture.

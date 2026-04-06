@@ -7,9 +7,7 @@ title: Custom Solutions & Technical Strategy
 
 <div className="section">
 
-<h1 className="heroTitle">
-Custom Solutions & Technical Strategy for Complex Systems
-</h1>
+<h1 className="heroTitle"> Custom Solutions & Technical Strategy for Complex Systems </h1>
 
 <p className="heroSubtitle">
 I help businesses design tailored architectures, build proof of concepts, and define technical strategies to solve complex challenges and scale with confidence.

@@ -7,9 +7,7 @@ title: AWS Cloud Solution Architect
 
 <div className="section">
 
-<h1 className="heroTitle">
-AWS Cloud Solution Architect for Scalable, Enterprise-Grade Systems
-</h1>
+<h1 className="heroTitle"> AWS Cloud Solution Architect for Scalable, Enterprise-Grade Systems </h1>
 
 <p className="heroSubtitle">
 I design and lead cloud architecture for high-scale applications, ensuring performance, security, scalability, and long-term reliability on AWS.

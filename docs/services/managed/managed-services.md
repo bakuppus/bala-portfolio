@@ -7,9 +7,7 @@ title: Managed Services
 
 <div className="section">
 
-<h1 className="heroTitle">
-Managed Cloud Services for Reliable, Secure, and Scalable Infrastructure
-</h1>
+<h1 className="heroTitle"> Managed Cloud Services for Reliable, Secure, and Scalable Infrastructure </h1>
 
 <p className="heroSubtitle">
 We manage your cloud infrastructure 24/7 — monitoring, scaling, security, and operations — so your team can focus on building products.

@@ -7,9 +7,7 @@ title: AWS Cloud Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-AWS Cloud Consulting for Scalable, Production-Ready Systems
-</h1>
+<h1 className="heroTitle"> AWS Cloud Consulting for Scalable, Production-Ready Systems </h1>
 
 <p className="heroSubtitle">
 I help startups and enterprises design, build, and scale secure AWS infrastructure that handles real production traffic with confidence.

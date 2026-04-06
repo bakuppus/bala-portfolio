@@ -7,9 +7,7 @@ title: DevSecOps Consulting
 
 <div className="section">
 
-<h1 className="heroTitle">
-DevSecOps Consulting for Secure, Production-Ready Systems
-</h1>
+<h1 className="heroTitle"> DevSecOps Consulting for Secure, Production-Ready Systems </h1>
 
 <p className="heroSubtitle">
 I integrate security into your DevOps pipelines and infrastructure to protect applications, data, and systems without slowing down development.
