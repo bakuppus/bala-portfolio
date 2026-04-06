@@ -49,7 +49,7 @@
     #ef4444
   );
 
-  opacity: 0;
+  opacity: 60;
 
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
