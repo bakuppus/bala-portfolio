@@ -151,7 +151,7 @@ Designed and implemented Azure-based multi-region infrastructure with CI/CD auto
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/img/case-studies/clientdost/architecture.png" />
+  <img src="/bala-portfolio/img/case-studies/clientdost/architecture.png" />
   <p className="imageCaption">
     Multi-region Azure architecture with Traffic Manager routing traffic between East and West regions.
   </p>

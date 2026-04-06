@@ -152,7 +152,7 @@ Designed and implemented a cloud-native DevOps architecture on Google Cloud Plat
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/img/case-studies/volumebilling/architecture.png" />
+  <img src="/bala-portfolio/img/case-studies/volumebilling/architecture.png" />
   <p className="imageCaption">
     High-level microservices architecture on GKE with API gateway, identity, and data layers.
   </p>

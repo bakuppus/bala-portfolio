@@ -181,7 +181,7 @@ Designed AWS-based cloud architecture including CDN, containerized backend servi
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/img/case-studies/afisado/architecture.png" />
+  <img src="/bala-portfolio/img/case-studies/afisado/architecture.png" />
   <p className="imageCaption">
     AWS architecture with CloudFront + S3 frontend and ECS Fargate backend with ALB and RDS.
   </p>

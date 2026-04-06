@@ -197,7 +197,7 @@ Architected and implemented a complete on-premise Kubernetes platform, including
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/img/case-studies/wtg/architecture.png" />
+  <img src="/bala-portfolio/img/case-studies/wtg/architecture.png" />
   <p className="imageCaption">
     On-prem Kubernetes platform with Rancher, GitOps, service mesh, and observability stack.
   </p>

@@ -28,7 +28,7 @@
   position: relative;
   overflow: hidden;
 }
-
+/* 
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
@@ -61,7 +61,7 @@
 
 .card:hover::before {
   opacity: 60;
-}
+} */
 
 .card h3 {
   font-size: 18px;
