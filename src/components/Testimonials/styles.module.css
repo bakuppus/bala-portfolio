@@ -20,7 +20,8 @@
 .featuredCard {
   position: relative;
   margin: 0 auto 60px;
-  max-width: 800px;
+  max-width: 900px;
+
 
   padding: 40px;
   border-radius: 20px;
@@ -133,3 +134,59 @@
 html[data-theme='dark'] .card {
   background: rgba(255, 255, 255, 0.02);
 }
+
+/* FEATURED VIDEO */
+/* VIDEO WRAPPER FIX */
+/* FORCE FIX */
+.videoWrapper {
+  position: relative !important;
+  width: 100% ;
+  height: 0; ;
+  padding-top: 56.25% !important; /* 16:9 */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* FORCE iframe fill */
+.videoWrapper iframe {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+}
+
+
+
+/* SMALL VIDEO */
+.videoSmall {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.videoSmall iframe {
+  width: 100%;
+  height: 940px;
+}
+
+/* EMBED WRAPPER (16:9 FIX) */
+/* TEXT EMBED (CONTROL HEIGHT) */
+.embedTextWrapper {
+  width: 100%;
+  height: 220px;        /* ✅ FIX HEIGHT */
+  margin-bottom: 12px;
+
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* iframe inside */
+.embedTextWrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
