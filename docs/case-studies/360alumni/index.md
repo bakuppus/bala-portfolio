@@ -106,7 +106,14 @@ Scalable SaaS platform transformation with Kubernetes, GitOps, and cost-optimize
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/img/case-studies/360alumni/landingzone.png" />
+  <img src="/bala-portfolio/img/case-studies/360alumni/architecture.png" />
+  <p className="imageCaption">
+    AWS Landing Zone with EKS, Istio, ALB, and GitOps-based deployment architecture.
+  </p>
+</div>
+
+<div className="imageContainer">
+  <img src="/bala-portfolio/img/case-studies/360alumni/landingzone.png" />
   <p className="imageCaption">
     AWS Landing Zone with EKS, Istio, ALB, and GitOps-based deployment architecture.
   </p>
