@@ -49,7 +49,7 @@
     #ef4444
   );
 
-  opacity: 60;
+  opacity: 0;
 
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -60,7 +60,7 @@
 }
 
 .card:hover::before {
-  opacity: 1;
+  opacity: 60;
 }
 
 .card h3 {
