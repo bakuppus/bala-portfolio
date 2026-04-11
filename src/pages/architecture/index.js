@@ -82,11 +82,11 @@ export default function ArchitecturePage() {
   </p>
 
   <div className={styles.heroButtons}>
-    <a href="/bala-portfolio/contact" className={styles.primaryBtn}>
+    <a href="/contact" className={styles.primaryBtn}>
       Discuss Architecture
     </a>
 
-    <a href="/bala-portfolio/services" className={styles.secondaryBtn}>
+    <a href="/services" className={styles.secondaryBtn}>
       View Services
     </a>
   </div>

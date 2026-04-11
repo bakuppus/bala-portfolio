@@ -215,7 +215,7 @@ A cloud-native microservices architecture was designed using AWS and Kubernetes,
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/bala-portfolio/img/case-studies/soltice/architecture.png" />
+  <img src="/img/case-studies/soltice/architecture.png" />
   <p className="imageCaption">
     On-prem Kubernetes platform with Rancher, GitOps, service mesh, and observability stack.
   </p>

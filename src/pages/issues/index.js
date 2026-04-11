@@ -52,11 +52,11 @@ export default function IssuesPage() {
   </p>
 
   <div className={styles.heroButtons}>
-    <a href="/bala-portfolio/contact" className={styles.primaryBtn}>
+    <a href="/contact" className={styles.primaryBtn}>
       Solve My Issue
     </a>
 
-    <a href="/bala-portfolio/labs" className={styles.secondaryBtn}>
+    <a href="/labs" className={styles.secondaryBtn}>
       Explore Labs
     </a>
   </div>

@@ -196,7 +196,7 @@ Designed and implemented a secure, scalable cloud-native platform on DigitalOcea
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/bala-portfolio/img/case-studies/fuzzygreentomato/architecture.png" />
+  <img src="/img/case-studies/fuzzygreentomato/architecture.png" />
   <p className="imageCaption">
     DigitalOcean Kubernetes-based IoT SaaS architecture with API services, data processing, and distributed workloads.
   </p>

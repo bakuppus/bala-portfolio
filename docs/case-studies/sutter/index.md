@@ -151,7 +151,7 @@ Architected and implemented an Active-Passive disaster recovery solution on Azur
 <h2 className="sectionHeading">Architecture</h2>
 
 <div className="imageContainer">
-  <img src="/bala-portfolio/img/case-studies/sutter/architecture.png" />
+  <img src="/img/case-studies/sutter/architecture.png" />
   <p className="imageCaption">
     Active-Passive disaster recovery architecture with Azure Front Door routing traffic between primary and standby regions.
   </p>
