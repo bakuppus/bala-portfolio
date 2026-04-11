@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdoeks_website=self.webpackChunkdoeks_website||[]).push([["3186"],{68070(e){e.exports=JSON.parse('{"tags":[{"label":"Service Mesh","permalink":"/blog/tags/service-mesh","count":1},{"label":"AWS","permalink":"/blog/tags/aws","count":4},{"label":"Kubernetes","permalink":"/blog/tags/kubernetes","count":5}]}')}}]);

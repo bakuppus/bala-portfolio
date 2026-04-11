@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdoeks_website=self.webpackChunkdoeks_website||[]).push([["3220"],{1912(o){o.exports=JSON.parse('{"blogBasePath":"/bala-portfolio/blog","blogTitle":"Blog","authorsListPath":"/bala-portfolio/blog/authors"}')}}]);
