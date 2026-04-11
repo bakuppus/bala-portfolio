@@ -18,6 +18,7 @@ const config = {
   organizationName: 'bakuppus',
   projectName: 'bala-portfolio',
 
+  
   future: {
     experimental_faster: true,
     v4: true,
