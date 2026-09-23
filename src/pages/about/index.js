@@ -20,9 +20,9 @@ export default function About() {
           </p>
 
           <div className={styles.heroActions}>
-  <a href="/files/bala-resume.pdf" download className={styles.primaryBtn}>
-    Download Resume
-  </a>
+<a href="https://bala-public-docs.s3.amazonaws.com/Resume2026-updated-1.pdf"   className={styles.primaryBtn} >
+  Download Resume
+</a>
 
   <a href="https://calendly.com/bala-kubelancer/30min" target="_blank" className={styles.secondaryBtn}>
     Book a Call
