@@ -20,7 +20,7 @@ export default function About() {
           </p>
 
           <div className={styles.heroActions}>
-  <a href=" https://bala-public-docs.s3.amazonaws.com/Resume2026-updated-1.pdf" download className={styles.primaryBtn}>
+  <a href="https://bala-public-docs.s3.amazonaws.com/Resume2026-updated-1.pdf" download className={styles.primaryBtn}>
     Download Resume
   </a>
 
